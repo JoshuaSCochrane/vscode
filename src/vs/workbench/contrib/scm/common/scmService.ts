@@ -80,7 +80,8 @@ class SCMInput implements ISCMInput {
 	store(value: string) {
 		let root = this.repository.provider.rootUri;
 		if (root) {
-			this.storageService.store(root.path, value, StorageScope.WORKSPACE);
+			const key = `scm/input:${this.repository.provider.label}:${root.path}`;
+			this.storageService.store(key, value, StorageScope.WORKSPACE);
 		}
 	}
 	storedValue() {
